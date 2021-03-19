@@ -1,0 +1,30 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="bridge.js" type="module"></script>
+    <script>
+        this.registerhandler('objcCallJsAction', function (response) {
+            log('JS got response', response)
+        })
+
+        function btnClick() {
+            bridge.callHandler('jsCallObjcAction', {
+                    'name': '小明'
+                },
+                function (response) {
+                    log('JS got response', response)
+                })
+        }
+    </script>
+
+</head>
+
+<body>
+    <button type="button" onclick="btnClick()">按钮</button>
+</body>
+
+</html>
