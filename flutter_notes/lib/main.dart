@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_notes/isolate_note/isolate_note_page.dart';
-import 'package:flutter_notes/webview/webview_page.dart';
+import 'package:flutter_notes/stream_note/camera_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -13,19 +12,20 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: IsolateNotePage(),
-      // home: WebViewPage(),
+      routes: {
+        "camera": (context) {
+          return CameraPage();
+        },
+      },
+      onGenerateRoute: (RouteSettings settings) {
+        return MaterialPageRoute(builder: (context) {
+          String routeName = settings.name;
+          // 如果访问的路由页需要登录，但当前未登录，则直接返回登录页路由，
+          // 引导用户登录；其它情况则正常打开路由。
+        });
+      },
     );
   }
 }
